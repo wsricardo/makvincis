@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Biblioteca Virtual MakVincis</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    
+  
+    <p style="padding 6px;">Lista de livros já disponíveis.</p>
+  
+    <br>
+  
+    <p id="libic"></p>
+		<script>
+
+      var xmlhttp = new XMLHttpRequest();
+      var urljson = "https://raw.githubusercontent.com/ItaengaConecta/libic-data/main/json/libic-textos-exatas.json"
+      xmlhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+		        var myArr = JSON.parse(this.responseText);
+			      var siz = myArr.length;
+			      var c = 0;
+			  while (c <= siz) {
+			    document.getElementById("libic").innerHTML += "<div style='padding: 8px;'> <br>"+myArr[c].Title+"<br><a href='"+myArr[c].MainLink+"'>"+myArr[c].MainLink+"</div>";
+				  c++;
+			  }
+
+
+		    }
+};
+xmlhttp.open("GET", urljson, true);
+xmlhttp.send(); 
+		</script>
+  </body>
+</html>
